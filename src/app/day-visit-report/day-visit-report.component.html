@@ -1,0 +1,84 @@
+<p class="col s12 m10  offset-l4">Users per day</p>
+<p class="col s12 m10  offset-l4">Average  - {{setAverage }} users</p>
+
+<form (ngSubmit)="submitForm(addTrainingForm.value)"  [formGroup]="addTrainingForm">
+
+
+  <div class="row">
+
+<div class="input-field class col    left">
+    <i class="material-icons prefix pink-text"></i>
+    <input id="start_date" formControlName="start_date" type="text" class="datepickers"  (change)="dateChange()">
+    <label for="start_date"> Start Date : <strong class="red-text">*</strong> </label>
+  </div>
+  <div class="input-field class col  right">
+    <i class="material-icons prefix pink-text"></i>
+    <input id="end_date" formControlName="end_date" type="text" class="datepickere"  (change)="dateChange()">
+    <label for="end_date"> End Date : <strong class="red-text">*</strong> </label>
+  </div>
+
+  </div>
+
+  <div class="col s12">
+    <button class='at-btn col s12 btn waves-effect success' style="margin-bottom: 15px;align-self: center;margin-left: 680px;" type="submit" [disabled]="!addTrainingForm.valid">
+      <i class="material-icons right"></i> Update graph
+    </button>
+
+    <!-- <button type="button" [ngClass]="'col s12 btn waves-effect ' + themeColor " (click)="backClicked()">
+      <i class="material-icons left">keyboard_arrow_left</i> Back To Training List
+    </button> -->
+  </div>
+
+  </form>
+
+
+  <!-- <input type="text" class="datepicker"> -->
+
+
+
+  <!-- php CI model code, convert string to date -->
+<!-- 'bdate' => date("Y-m-d", strtotime($this->input->post('bdate'))) -->
+<!-- <div class="container">
+    <br><br><br><br><br><br><br>
+    <div class="col s12 m10 offset-m1 l6 offset-l3">
+  
+      <div class="row">
+        <form action="" class="col s12 m8 offset-m2 l6 offset-l3 left-align">
+          <div class="row">
+            <div class="input-field">
+              <input type=text name="bdate" id="bdate" class="datepicker" required>
+              <label for="bdate">Birthday</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field">
+              <input name="email" id="email" type="text" class="validate">
+              <label for="email">Email</label>
+            </div>
+          </div>
+        </form>
+      </div>
+  
+    </div> -->
+
+    <!-- <div *ngIf="startDate">hrrrrrrrrrrrrrrrrrr {{startDate}}</div> -->
+
+    <div *ngIf="startDate && endDate && queryResult" id='chart_div'style="left:500px;align:'center'; width:1300px; height:auto;">
+
+      <!-- <h1>4. Line chart</h1> -->
+      <canvas #lineCanvas style="height:5vh; width:10vw"></canvas>
+      <hr color="red">
+  </div>
+
+  <div *ngIf="startDate && endDate && isUndefined()">
+    <p>OOPS there is no analytics data stored on these specified dates</p>
+  </div>
+
+  <!-- {{typeofSD}} -->
+
+  <!-- <div *ngIf="defaultStartDate && defaultEndDate" id='chart_div'style="left:500px;align:'center'; width:1300px; height:1300px;">
+
+    <h1>4. Line chart</h1>
+    <canvas #lineCanvas style="height:5vh; width:10vw"></canvas>
+    <hr color="red">
+</div> -->

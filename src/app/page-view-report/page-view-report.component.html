@@ -1,0 +1,82 @@
+<p class="col s12 m10  offset-l4">Top 10 Pages by Views</p>
+<p class="col s12 m10  offset-l4">Total Pages  - {{setTotalPages}}</p>
+
+<form (ngSubmit)="submitForm(addTrainingForm.value)"  [formGroup]="addTrainingForm">
+
+
+  <div class="row">
+
+<div class="input-field class col left">
+    <i class="material-icons prefix pink-text"></i>
+    <input id="start_date" formControlName="start_date" type="text" class="datepickers"  (change)="dateChange()">
+    <label for="start_date"> Start Date : <strong class="red-text">*</strong> </label>
+  </div>
+  <div class="input-field class col right">
+    <i class="material-icons prefix pink-text"></i>
+    <input id="end_date" formControlName="end_date" type="text" class="datepickere"  (change)="dateChange()">
+    <label for="end_date"> End Date : <strong class="red-text">*</strong> </label>
+  </div>
+
+  </div>
+
+  <div class="col s12">
+    <button class='at-btn col s12 btn waves-effect success' style="margin-bottom: 15px;align-self: center;margin-left: 680px;" type="submit" [disabled]="!addTrainingForm.valid">
+      <i class="material-icons right"></i> View
+    </button>
+
+    <!-- <button type="button" [ngClass]="'col s12 btn waves-effect ' + themeColor " (click)="backClicked()">
+      <i class="material-icons left">keyboard_arrow_left</i> Back To Training List
+    </button> -->
+  </div>
+
+  </form>
+
+
+  <div class="row" id='chart_div'style="align:'center'; width:1300px; height:auto;" >
+
+    <table *ngIf="setReportData && setReportData.length >0" >
+      <thead class="hide-on-small-only">
+        <tr>
+          <!-- <th></th> -->
+          <th>Page</th>
+          <th>Views</th>
+          <th>%</th>
+        </tr>
+      </thead>
+  
+      <tbody>
+        <tr *ngFor="let row of setReportData "
+          class="striped">
+          <!-- <td>{{id}}</td> -->
+          <td>{{row.path}}</td>
+          <td>{{row.views}}</td>
+          <td>{{row.perc}}</td>
+
+
+          <!-- <td class="hide-on-small-only">
+  
+            <button type="button" style='margin-right: 3%;' data-target="classRoomModal"
+              class="btn-floating btn-small waves-effect  green modal-trigger"
+              (click)='openCreateClassModal("edit",class)'><i class="material-icons left">edit</i>
+            </button>
+  
+            <button type="button" data-target="deleteClassRoomModal"
+              class="btn-floating btn-small waves-effect  red modal-trigger" (click)='openDeleteClassModal(class)'><i
+                class="material-icons left">delete</i>
+            </button>
+          </td> -->
+  
+          <!-- <td class="hide-on-small-only">
+            <a [routerLink]="['/admin/class-room-detail/', id, class.id]"
+              class="waves-effect waves-light btn">{{class.name}} detail</a>
+          </td> -->
+  
+        </tr>
+  
+      </tbody>
+    </table>
+  
+   
+    <div *ngIf="startDate && endDate &&!queryResult">
+      <p>OOPS there is no analytics data stored on these specified dates</p>
+    </div>

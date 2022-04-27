@@ -1,0 +1,46 @@
+<p class="col s12 m10  offset-l4">Browser report</p>
+<p class="col s12 m10  offset-l4">Total Users  -{{setTotalUsers}}</p>
+
+<form (ngSubmit)="submitForm(addTrainingForm.value)"  [formGroup]="addTrainingForm">
+
+
+  <div class="row">
+
+<div class="input-field class left">
+    <i class="material-icons prefix pink-text"></i>
+    <input id="start_date" formControlName="start_date" type="text" class="datepickers"  (change)="dateChange()">
+    <label for="start_date"> Start Date : <strong class="red-text">*</strong> </label>
+  </div>
+  <div class="input-field class col right">
+    <i class="material-icons prefix pink-text"></i>
+    <input id="end_date" formControlName="end_date" type="text" class="datepickere"  (change)="dateChange()">
+    <label for="end_date"> End Date : <strong class="red-text">*</strong> </label>
+  </div>
+
+  </div>
+
+  <div class="col s12">
+    <button class='at-btn col s12 btn waves-effect success' style="margin-bottom: 15px;align-self: center;margin-left: 680px;" type="submit" [disabled]="!addTrainingForm.valid">
+      <i class="material-icons right"></i> Update graph
+    </button>
+
+    <!-- <button type="button" [ngClass]="'col s12 btn waves-effect ' + themeColor " (click)="backClicked()">
+      <i class="material-icons left">keyboard_arrow_left</i> Back To Training List
+    </button> -->
+  </div>
+
+  </form>
+
+
+ 
+
+  <div *ngIf="startDate && endDate && queryResult" id='chart_div'style="align:'center'; width:500px; height:auto;">
+
+    <!-- <h1>1. Pie chart</h1> -->
+    <canvas #pieCanvas style="height:5vh; width:10vw"></canvas>
+    <hr color="red">
+</div>
+
+<div *ngIf="startDate && endDate && isUndefined()">
+  <p>OOPS there is no analytics data stored on these specified dates</p>
+</div>
